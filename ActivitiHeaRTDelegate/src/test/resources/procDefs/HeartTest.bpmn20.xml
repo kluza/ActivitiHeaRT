@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="HeartTest" name="My process" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <scriptTask id="scripttask1" name="INIT" scriptFormat="groovy" activiti:autoStoreVariables="true">
+      <script>execution.setVariable("month","july");
+execution.setVariable("day","4.0");
+execution.setVariable("hour","12.0");</script>
+    </scriptTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <serviceTask id="servicetask1" name="ms" activiti:class="heart.taskdelegate.HeartDelegate" activiti:extensionId="heart.taskdef.HeartInference">
+      <extensionElements>
+        <activiti:field name="userName">
+          <activiti:string>jBPM</activiti:string>
+        </activiti:field>
+        <activiti:field name="modelName">
+          <activiti:string>first</activiti:string>
+        </activiti:field>
+        <activiti:field name="table">
+          <activiti:string>ms</activiti:string>
+        </activiti:field>
+        <activiti:field name="attributeSet">
+          <activiti:string>heartAtts</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow3" sourceRef="scripttask1" targetRef="parallelgateway1"></sequenceFlow>
+    <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
+    <parallelGateway id="parallelgateway2" name="Parallel Gateway"></parallelGateway>
+    <sequenceFlow id="flow4" sourceRef="parallelgateway1" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="servicetask1" targetRef="parallelgateway2"></sequenceFlow>
+    <serviceTask id="servicetask2" name="dt" activiti:class="heart.taskdelegate.HeartDelegate" activiti:extensionId="heart.taskdef.HeartInference">
+      <extensionElements>
+        <activiti:field name="userName">
+          <activiti:string>jBPM</activiti:string>
+        </activiti:field>
+        <activiti:field name="modelName">
+          <activiti:string>first</activiti:string>
+        </activiti:field>
+        <activiti:field name="table">
+          <activiti:string>dt</activiti:string>
+        </activiti:field>
+        <activiti:field name="attributeSet">
+          <activiti:string>heartAtts</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask3" name="th" activiti:class="heart.taskdelegate.HeartDelegate" activiti:extensionId="heart.taskdef.HeartInference">
+      <extensionElements>
+        <activiti:field name="userName">
+          <activiti:string>jBPM</activiti:string>
+        </activiti:field>
+        <activiti:field name="modelName">
+          <activiti:string>first</activiti:string>
+        </activiti:field>
+        <activiti:field name="table">
+          <activiti:string>th</activiti:string>
+        </activiti:field>
+        <activiti:field name="attributeSet">
+          <activiti:string>heartAtts</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow6" sourceRef="parallelgateway1" targetRef="servicetask2"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="servicetask2" targetRef="servicetask3"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="servicetask3" targetRef="parallelgateway2"></sequenceFlow>
+    <serviceTask id="servicetask4" name="os" activiti:class="heart.taskdelegate.HeartDelegate" activiti:extensionId="heart.taskdef.HeartInference">
+      <extensionElements>
+        <activiti:field name="userName">
+          <activiti:string>jBPM</activiti:string>
+        </activiti:field>
+        <activiti:field name="modelName">
+          <activiti:string>first</activiti:string>
+        </activiti:field>
+        <activiti:field name="table">
+          <activiti:string>os</activiti:string>
+        </activiti:field>
+        <activiti:field name="attributeSet">
+          <activiti:string>heartAtts</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow9" sourceRef="parallelgateway2" targetRef="servicetask4"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="servicetask4" targetRef="scripttask2"></sequenceFlow>
+    <scriptTask id="scripttask2" name="DISP" scriptFormat="groovy" activiti:autoStoreVariables="true">
+      <script>out:println "month: "+execution.getVariable("month");
+out:println "day: "+execution.getVariable("day");
+out:println "today: "+execution.getVariable("today");
+out:println "hour: "+execution.getVariable("hour");
+out:println "season: "+execution.getVariable("season");
+out:println "operation: "+execution.getVariable("operation");
+out:println "therm_set: "+execution.getVariable("therm_set");</script>
+    </scriptTask>
+    <sequenceFlow id="flow11" sourceRef="scripttask2" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_HeartTest">
+    <bpmndi:BPMNPlane bpmnElement="HeartTest" id="BPMNPlane_HeartTest">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="30.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="910.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="112.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="290.0" y="127.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway2" id="BPMNShape_parallelgateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="570.0" y="127.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="640.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="780.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="65.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="112.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="217.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="290.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="310.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="87.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="87.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="495.0" y="87.0"></omgdi:waypoint>
+        <omgdi:waypoint x="590.0" y="87.0"></omgdi:waypoint>
+        <omgdi:waypoint x="590.0" y="127.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="310.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="191.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="442.0" y="218.0"></omgdi:waypoint>
+        <omgdi:waypoint x="442.0" y="250.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="495.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="590.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="590.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="610.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="640.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="745.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="780.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="885.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="910.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
