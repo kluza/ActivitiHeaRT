@@ -20,8 +20,8 @@ import pl.edu.agh.heart.taskdelegate.HeartDelegate;
 
 /** @author ja */
 public class HeartTaskJsonConverter extends BaseBpmnJsonConverter {
-    private static final String USERNAME = "userName";
-    private static final String MODELNAME = "modelName";
+    private static final String USERNAME = "username";
+    private static final String MODELNAME = "modelname";
     private static final String TABLE = "table";
     
     protected void convertElementToJson(ObjectNode pPropertiesNode, FlowElement pFlowElement) {
@@ -34,17 +34,24 @@ public class HeartTaskJsonConverter extends BaseBpmnJsonConverter {
         task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_CLASS);
         task.setImplementation(HeartDelegate.class.getName());
         FieldExtension userName = new FieldExtension();
-        userName.setFieldName(USERNAME);
-        userName.setStringValue(getPropertyValueAsString(USERNAME, pElementNode));
+        String userNameValue = getPropertyValueAsString(USERNAME, pElementNode);
+        System.out.println("\n\n#######\n\nuser: " + userNameValue + "\n\n########\n\n");
+        userName.setFieldName("userName");
+        userName.setStringValue(userNameValue);
         task.getFieldExtensions().add(userName);
         FieldExtension modelName = new FieldExtension();
-        modelName.setFieldName(MODELNAME);
-        modelName.setStringValue(getPropertyValueAsString(MODELNAME, pElementNode));
+        String modelNameValue = getPropertyValueAsString(MODELNAME, pElementNode);
+        System.out.println("\n\n#######\n\nmodel: " + modelNameValue + "\n\n########\n\n");
+        modelName.setFieldName("modelName");
+        modelName.setStringValue(modelNameValue);
         task.getFieldExtensions().add(modelName);
         FieldExtension table = new FieldExtension();
-        table.setFieldName(TABLE);
-        table.setStringValue(getPropertyValueAsString(TABLE, pElementNode));
+        String tableValue = getPropertyValueAsString(TABLE, pElementNode);
+        System.out.println("\n\n#######\n\ntable: " + tableValue + "\n\n########\n\n");
+        table.setFieldName("table");
+        table.setStringValue(tableValue);
         task.getFieldExtensions().add(table);
+        convertJsonToFormProperties(pElementNode, task);
         return task;
     }
     
@@ -66,4 +73,5 @@ public class HeartTaskJsonConverter extends BaseBpmnJsonConverter {
         fillJsonTypes(convertersToBpmnMap);
         fillBpmnTypes(convertersToJsonMap);
     }
+    
 }

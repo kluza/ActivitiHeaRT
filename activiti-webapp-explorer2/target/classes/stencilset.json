@@ -311,14 +311,14 @@
   },{
 	  "name" : "heartbase",
 	  "properties" : [{
-		  "id" : "userName",
+		  "id" : "username",
 		  "type" : "String",
 		  "title" : "User",
 		  "value" : "",
 		  "description" : "User name",
 		  "popular" : true
 	  },{
-		  "id" : "modelName",
+		  "id" : "modelname",
 		  "type" : "String",
 		  "title" : "Model",
 		  "value" : "",
