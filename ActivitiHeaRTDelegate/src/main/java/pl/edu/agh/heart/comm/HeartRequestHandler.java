@@ -1,11 +1,11 @@
-package newheartconnection;
+package pl.edu.agh.heart.comm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import bracketparser.CompositeElement;
-import bracketparser.Element;
+import pl.edu.agh.heart.bracketparser.CompositeElement;
+import pl.edu.agh.heart.bracketparser.Element;
 
 /** @author ja */
 public class HeartRequestHandler {

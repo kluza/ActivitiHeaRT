@@ -8,4 +8,4 @@
 /**
  * @author Comarch
  */
-package bracketparser;
+package pl.edu.agh.heart.bracketparser;

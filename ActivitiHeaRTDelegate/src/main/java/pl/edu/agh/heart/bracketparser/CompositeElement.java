@@ -5,7 +5,7 @@
  * is allowed only according to separate agreement prepared
  * in written between ComArch and authorized party.
  */
-package bracketparser;
+package pl.edu.agh.heart.bracketparser;
 
 import java.util.ArrayList;
 import java.util.List;

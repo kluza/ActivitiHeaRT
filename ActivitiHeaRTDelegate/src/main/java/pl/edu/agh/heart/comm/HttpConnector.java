@@ -1,4 +1,4 @@
-package newheartconnection;
+package pl.edu.agh.heart.comm;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;

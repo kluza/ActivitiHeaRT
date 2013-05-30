@@ -1,4 +1,4 @@
-package heart.taskdelegate;
+package pl.edu.agh.heart.taskdelegate;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import newheartconnection.HeartRequestHandler;
-import newheartconnection.HttpConnector;
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.JavaDelegate;
+import pl.edu.agh.heart.comm.HeartRequestHandler;
+import pl.edu.agh.heart.comm.HttpConnector;
 
 /** @author ja */
 public class HeartDelegate implements JavaDelegate {
