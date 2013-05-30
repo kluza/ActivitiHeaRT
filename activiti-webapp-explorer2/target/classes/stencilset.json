@@ -308,6 +308,30 @@
         } ]
       } ]
     } ]
+  },{
+	  "name" : "heartbase",
+	  "properties" : [{
+		  "id" : "userName",
+		  "type" : "String",
+		  "title" : "User",
+		  "value" : "",
+		  "description" : "User name",
+		  "popular" : true
+	  },{
+		  "id" : "modelName",
+		  "type" : "String",
+		  "title" : "Model",
+		  "value" : "",
+		  "description" : "Model name",
+		  "popular" : true
+	  },{
+		  "id" : "table",
+		  "type" : "String",
+		  "title" : "Table",
+		  "value" : "",
+		  "description" : "Table",
+		  "popular" : true
+	  }]
   }, {
     "name" : "servicetaskbase",
     "properties" : [ {
@@ -993,6 +1017,16 @@
     "groups" : [ "Activities" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "servicetaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
+  }, {
+	  "type" : "node",
+	  "id" : "HeartTask",
+	  "title" : "HeaRT table",
+	  "description" : "Run inference on a HeaRT table",
+	  "view" : "activity/servicetask.svg",
+	  "icon" : "activity/list/type.service.png",
+	  "groups" : [ "Activities" ],
+	  "propertyPackages" : ["elementbase", "baseattributes", "heartbase"],
+	  "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "ScriptTask",
