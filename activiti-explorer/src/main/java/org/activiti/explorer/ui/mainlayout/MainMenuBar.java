@@ -23,6 +23,7 @@ import org.activiti.explorer.ViewManager;
 import org.activiti.explorer.identity.LoggedInUser;
 import org.activiti.explorer.ui.Images;
 import org.activiti.explorer.ui.profile.ChangePasswordPopupWindow;
+import pl.edu.agh.heart.explorer.Constants;
 import com.vaadin.terminal.Resource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -112,9 +113,10 @@ public class MainMenuBar extends HorizontalLayout {
         }
         
         Button heartButton =
-                addMenuButton(ViewManager.MAIN_NAVIGATION_PROCESS, "HeaRT", Images.MAIN_MENU_PROCESS, false,
-                        80);
-        menuItemButtons.put("HeaRT", heartButton);
+                addMenuButton(ViewManager.MAIN_NAVIGATION_PROCESS, Constants.HEART, Images.MAIN_MENU_PROCESS,
+                        false, 80);
+        heartButton.addListener(Constants.getClickListener());
+        menuItemButtons.put(Constants.HEART, heartButton);
     }
     
     protected void initTitle() {

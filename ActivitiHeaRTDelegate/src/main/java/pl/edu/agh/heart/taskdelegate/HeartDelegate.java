@@ -12,6 +12,7 @@ import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.delegate.JavaDelegate;
 import pl.edu.agh.heart.comm.HeartRequestHandler;
 import pl.edu.agh.heart.comm.HttpConnector;
+import pl.edu.agh.heart.constants.Constants;
 
 /** @author ja */
 public class HeartDelegate implements JavaDelegate {
@@ -24,7 +25,7 @@ public class HeartDelegate implements JavaDelegate {
     
     public HeartDelegate() throws IOException {
         Properties props = new Properties();
-        InputStream propIs = getClass().getClassLoader().getResourceAsStream("props/HeartComm.properties");
+        InputStream propIs = getClass().getClassLoader().getResourceAsStream(Constants.H_CONN_PATH);
         props.load(propIs);
         String host = props.getProperty("hostName");
         int port = Integer.valueOf(props.getProperty("port"));
