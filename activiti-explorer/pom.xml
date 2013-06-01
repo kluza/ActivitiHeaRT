@@ -135,6 +135,11 @@
         <scope>compile</scope>
      </dependency>
 
+    <dependency>
+    	<groupId>ActivitiHeaRT</groupId>
+    	<artifactId>ActivitiHeaRTDelegate</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   
   <profiles>
