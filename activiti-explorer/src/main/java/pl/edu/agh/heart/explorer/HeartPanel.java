@@ -12,7 +12,8 @@ import com.vaadin.ui.Label;
 
 /** @author ja */
 public class HeartPanel extends DetailPanel {
-    public HeartPanel() {
+    public void attach() {
+        super.attach();
         addDetailComponent(new Label("Hello world"));
     }
 }

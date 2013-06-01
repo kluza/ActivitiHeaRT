@@ -14,10 +14,6 @@ import com.vaadin.ui.AbstractSelect;
 /** @author ja */
 public class HeartPage extends AbstractPage {
     
-    public HeartPage() {
-        setDetailComponent(new HeartPanel());
-    }
-    
     protected ToolBar createMenuBar() {
         return null;
     }
@@ -30,6 +26,12 @@ public class HeartPage extends AbstractPage {
     }
     
     public void selectElement(int pIndex) {
+    }
+    
+    @Override
+    public void initUi() {
+        super.initUi();
+        setDetailComponent(new HeartPanel());
     }
     
 }
