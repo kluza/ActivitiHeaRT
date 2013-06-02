@@ -55,7 +55,7 @@ public class HeartRepository {
         String response = httpConnector.performRequest(request);
         String modelDef = response.split(",", 2)[1];
         int length = modelDef.length();
-        modelDef = modelDef.substring(1, length - 3);
+        modelDef = modelDef.substring(1, length - 2);
         modelDef = modelDef.replace(".", ".\n");
         return modelDef;
     }

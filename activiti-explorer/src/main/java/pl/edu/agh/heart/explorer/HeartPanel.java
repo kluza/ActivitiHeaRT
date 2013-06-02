@@ -23,7 +23,13 @@ public class HeartPanel extends DetailPanel {
         modelTree = ModelTree.get(this);
         layout.addComponent(modelTree);
         layout.addComponent(text);
+        layout.setExpandRatio(modelTree, 1);
+        layout.setExpandRatio(text, 8);
         addDetailComponent(layout);
+        layout.setSizeFull();
+        layout.setHeight("100%");
+        text.setHeight("100%");
+        text.setSizeFull();
     }
     
     TextArea getText() {
