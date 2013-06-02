@@ -49,4 +49,14 @@ public class HeartRepository {
         }
         return result;
     }
+    
+    public String getModelHMR(String modelName, String userName) throws Exception {
+        String request = "[model,get,hmr," + modelName + "," + userName + ",[[all]]].";
+        String response = httpConnector.performRequest(request);
+        String modelDef = response.split(",", 2)[1];
+        int length = modelDef.length();
+        modelDef = modelDef.substring(1, length - 3);
+        modelDef = modelDef.replace(".", ".\n");
+        return modelDef;
+    }
 }

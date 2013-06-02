@@ -78,9 +78,16 @@ class ModelTreeListener implements ValueChangeListener {
     public void valueChange(ValueChangeEvent pEvent) {
         Object value = tree.getValue();
         if (value instanceof ModelTree.Model) {
-            panel.getText().setValue(
-                    "" + ((ModelTree.Model) value).user + "/" + ((ModelTree.Model) value).name);
+            try {
+                ModelTree.Model model = (ModelTree.Model) value;
+                HeartRepository hr = new HeartRepository();
+                String modelDef = hr.getModelHMR(model.name, model.user);
+                panel.getText().setValue(modelDef);
+            } catch (IOException exception) {
+                panel.getText().setValue("Couldn't connect to HeaRT");
+            } catch (Exception exception) {
+                panel.getText().setValue("HeaRT communication error");
+            }
         }
     }
-    
 }

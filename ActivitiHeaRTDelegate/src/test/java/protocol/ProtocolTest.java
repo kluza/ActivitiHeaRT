@@ -23,4 +23,11 @@ public class ProtocolTest {
             System.out.println(user + ':' + dupa.get(user));
         }
     }
+    
+    @Test
+    public void hmrTest() throws Exception {
+        HeartRepository hr = new HeartRepository();
+        String hmrDef = hr.getModelHMR("first", "jBPM");
+        System.out.println(hmrDef);
+    }
 }
