@@ -22,7 +22,7 @@ public class HeartRequestHandler {
                 + state + "].";
     }
     
-    public Map<String, Object> parseResponse(String response) {
+    public Map<String, Object> parseInferenceResponse(String response) {
         Map<String, Object> result = new HashMap<String, Object>();
         CompositeElement retState =
                 (CompositeElement) ((CompositeElement) Element.parse(response)).getSubs().get(1);
@@ -65,11 +65,11 @@ public class HeartRequestHandler {
         return result;
     }
     
-    public List<String> getInAtts(String response) {
+    public List<String> parseInAttributes(String response) {
         return getAtts(response, true);
     }
     
-    public List<String> getOutAtts(String response) {
+    public List<String> parseOutAttributes(String response) {
         return getAtts(response, false);
     }
     

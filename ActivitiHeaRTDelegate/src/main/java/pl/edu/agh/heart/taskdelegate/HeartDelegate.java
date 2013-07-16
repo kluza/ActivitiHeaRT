@@ -46,7 +46,7 @@ public class HeartDelegate implements JavaDelegate {
         if (!heartHandler.isSuccess(response)) {
             throw new Exception("Heart request failed!");
         }
-        Map<String, Object> result = heartHandler.parseResponse(response);
+        Map<String, Object> result = heartHandler.parseInferenceResponse(response);
         saveState(result, execution);
     }
     
@@ -58,7 +58,7 @@ public class HeartDelegate implements JavaDelegate {
         if (!heartHandler.isSuccess(response)) {
             throw new Exception("Heart request failed!");
         }
-        List<String> inAtts = heartHandler.getInAtts(response);
+        List<String> inAtts = heartHandler.parseInAttributes(response);
         for (String att: inAtts) {
             if (!execution.hasVariable(att)) {
                 throw new ActivitiException("Variable " + att + " has not been defined!");
